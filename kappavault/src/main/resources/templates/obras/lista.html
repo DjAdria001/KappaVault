@@ -39,22 +39,14 @@
 
         <h1 class="section-title">Crear nueva obra</h1>
 
-        <form method="post" th:action="@{/obras/guardar}" class="form-grid">
-
-            <input type="text" name="titulo" placeholder="Título" required>
-
-            <input type="text" name="tipo" placeholder="Tipo" required>
-
-            <input type="text" name="genero" placeholder="Género" required>
-
-            <input type="number" name="anio" placeholder="Año" required>
-
-            <input type="text" name="imagenUrl" placeholder="URL de la imagen" required class="full">
-
-            <button type="submit" class="btn btn-primary full">
-                Guardar obra
-            </button>
-
+        <form th:action="@{/obras/nuevo}" th:object="${nuevaObra}" method="post">
+            <input type="text" th:field="*{titulo}" placeholder="Título del Anime" required />
+            <input type="text" th:field="*{tipo}" placeholder="Tipo (Anime, Manga, etc.)" />
+            <input type="text" th:field="*{genero}" placeholder="Género" />
+            <input type="number" th:field="*{anio}" placeholder="Año" />
+            <input type="text" th:field="*{imagenUrl}" placeholder="URL de la Imagen" />
+            
+            <button type="submit">Guardar Anime</button>
         </form>
 
     </section>

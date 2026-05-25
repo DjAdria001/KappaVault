@@ -96,7 +96,7 @@
             </h2>
 
             <form method="post"
-                  th:action="@{'/obras/' + ${obra.id} + '/review'}"
+                  th:action="@{/obras/{id}/review(id=${obra.id})}"
                   th:object="${review}">
 
                 <div class="form-grid">
