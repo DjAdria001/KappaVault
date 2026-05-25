@@ -1,22 +1,15 @@
+
 package com.adria.kappavault.model;
+
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 @Entity
-@Table(name = "obras")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Obra {
 
     @Id
@@ -24,15 +17,11 @@ public class Obra {
     private Long id;
 
     private String titulo;
-
-    private String tipo; // ANIME o MANGA
-
+    private String tipo;
     private String genero;
-
     private int anio;
-
     private String imagenUrl;
 
-    @OneToMany(mappedBy = "obra")
+    @OneToMany(mappedBy = "obra", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
 }

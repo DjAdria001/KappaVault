@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | KappaVault</title>
+    <link rel="icon" type="image/png" href="/images/logo2.png">
+
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<header class="container navbar">
+
+    <div class="logo-box">
+
+        <img src="/images/logo2.png"
+             alt="KappaVault Logo"
+             class="logo-img">
+
+        <h2 class="logo">
+            KappaVault
+        </h2>
+
+    </div>
+
+    <nav class="nav-links">
+        <a href="/">Inicio</a>
+        <a href="/obras">Catálogo</a>
+    </nav>
+
+</header>
+
+<main class="container">
+
+    <section class="form-card">
+
+        <h1 class="section-title">Crear nueva obra</h1>
+
+        <form method="post" th:action="@{/obras/guardar}" class="form-grid">
+
+            <input type="text" name="titulo" placeholder="Título" required>
+
+            <input type="text" name="tipo" placeholder="Tipo" required>
+
+            <input type="text" name="genero" placeholder="Género" required>
+
+            <input type="number" name="anio" placeholder="Año" required>
+
+            <input type="text" name="imagenUrl" placeholder="URL de la imagen" required class="full">
+
+            <button type="submit" class="btn btn-primary full">
+                Guardar obra
+            </button>
+
+        </form>
+
+    </section>
+
+    <h1 class="section-title">Listado de obras</h1>
+
+    <section class="grid">
+
+        <article class="card" th:each="obra : ${obras}">
+
+            <img th:src="${obra.imagenUrl}" alt="Poster">
+
+            <div class="card-content">
+
+                <span class="badge" th:text="${obra.tipo}">
+                    Anime
+                </span>
+
+                <h3 th:text="${obra.titulo}">
+                    Título
+                </h3>
+
+                <p>
+                    <span th:text="${obra.genero}"></span> ·
+                    <span th:text="${obra.anio}"></span>
+                </p>
+
+                <a class="btn btn-primary"
+                   th:href="@{'/obras/' + ${obra.id}}">
+                    Ver detalle
+                </a>
+
+            </div>
+
+        </article>
+
+    </section>
+
+</main>
+
+<footer>
+    © 2026 KappaVault
+</footer>
+
+</body>
+</html>

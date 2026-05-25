@@ -1,30 +1,34 @@
+
 package com.adria.kappavault.service;
-
-import java.util.List;
-
-import org.springframework.stereotype.Service;
 
 import com.adria.kappavault.model.Obra;
 import com.adria.kappavault.repository.ObraRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ObraService {
 
-    private final ObraRepository obraRepository;
+    private final ObraRepository repo;
 
-    public ObraService(ObraRepository obraRepository) {
-        this.obraRepository = obraRepository;
+    public ObraService(ObraRepository repo) {
+        this.repo = repo;
     }
 
     public List<Obra> obtenerTodas() {
-        return obraRepository.findAll();
+        return repo.findAll();
+    }
+
+    public Obra obtenerPorId(Long id) {
+        return repo.findById(id).orElse(null);
     }
 
     public Obra guardar(Obra obra) {
-        return obraRepository.save(obra);
+        return repo.save(obra);
     }
 
     public void eliminar(Long id) {
-        obraRepository.deleteById(id);
+        repo.deleteById(id);
     }
 }

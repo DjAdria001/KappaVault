@@ -1,21 +1,13 @@
+
 package com.adria.kappavault.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Table(name = "reviews")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Review {
 
     @Id
@@ -23,9 +15,7 @@ public class Review {
     private Long id;
 
     private int puntuacion;
-
     private String comentario;
-
     private String estado;
 
     @ManyToOne

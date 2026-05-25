@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title th:text="${obra.titulo}">Detalle</title>
+    <link rel="icon" type="image/png" href="/images/logo2.png">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<header class="container navbar">
+
+    <div class="logo-box">
+
+        <img src="/images/logo2.png"
+             alt="KappaVault Logo"
+             class="logo-img">
+
+        <h2 class="logo">
+            KappaVault
+        </h2>
+
+    </div>
+
+    <nav class="nav-links">
+        <a href="/">Inicio</a>
+        <a href="/obras">Catálogo</a>
+    </nav>
+
+</header>
+
+<main class="container">
+
+    <section class="detail-layout">
+
+        <img class="poster"
+             th:src="${obra.imagenUrl}"
+             alt="Poster">
+
+        <article class="panel">
+
+            <h1 th:text="${obra.titulo}">
+                Título
+            </h1>
+
+            <div class="meta">
+
+                <span class="badge" th:text="${obra.tipo}">
+                    Anime
+                </span>
+
+                <span class="badge" th:text="${obra.genero}">
+                    Acción
+                </span>
+
+                <span class="badge" th:text="${obra.anio}">
+                    2025
+                </span>
+
+            </div>
+
+            <h2>Reviews de la comunidad</h2>
+
+            <p th:if="${#lists.isEmpty(obra.reviews)}"
+               class="empty">
+                Aún no hay reviews para esta obra.
+            </p>
+
+            <div class="review"
+                 th:each="r : ${obra.reviews}">
+
+                <div class="review-top">
+
+                    <strong th:text="${r.estado}">
+                        Completado
+                    </strong>
+
+                    <span>
+                        ⭐ <span th:text="${r.puntuacion}"></span>/10
+                    </span>
+
+                </div>
+
+                <p th:text="${r.comentario}">
+                    Comentario
+                </p>
+
+            </div>
+
+            <h2 class="section-title">
+                Publicar review
+            </h2>
+
+            <form method="post"
+                  th:action="@{'/obras/' + ${obra.id} + '/review'}"
+                  th:object="${review}">
+
+                <div class="form-grid">
+
+                    <input type="text"
+                           th:field="*{estado}"
+                           placeholder="Nombre/Apodo"
+                           required>
+
+                    <input type="number"
+                           min="1"
+                           max="10"
+                           th:field="*{puntuacion}"
+                           placeholder="Puntuación"
+                           required>
+
+                    <textarea class="full"
+                              rows="6"
+                              th:field="*{comentario}"
+                              placeholder="Escribe tu review"
+                              required></textarea>
+
+                    <button type="submit"
+                            class="btn btn-primary full">
+                        Publicar review
+                    </button>
+
+                </div>
+
+            </form>
+
+        </article>
+
+    </section>
+
+</main>
+
+<footer>
+    © 2026 KappaVault
+</footer>
+
+</body>
+</html>

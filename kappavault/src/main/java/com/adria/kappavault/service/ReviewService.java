@@ -1,30 +1,30 @@
+
 package com.adria.kappavault.service;
-
-import java.util.List;
-
-import org.springframework.stereotype.Service;
 
 import com.adria.kappavault.model.Review;
 import com.adria.kappavault.repository.ReviewRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ReviewService {
 
-    private final ReviewRepository reviewRepository;
+    private final ReviewRepository repo;
 
-    public ReviewService(ReviewRepository reviewRepository) {
-        this.reviewRepository = reviewRepository;
+    public ReviewService(ReviewRepository repo) {
+        this.repo = repo;
     }
 
     public List<Review> obtenerTodas() {
-        return reviewRepository.findAll();
+        return repo.findAll();
     }
 
     public Review guardar(Review review) {
-        return reviewRepository.save(review);
+        return repo.save(review);
     }
 
     public void eliminar(Long id) {
-        reviewRepository.deleteById(id);
+        repo.deleteById(id);
     }
 }
