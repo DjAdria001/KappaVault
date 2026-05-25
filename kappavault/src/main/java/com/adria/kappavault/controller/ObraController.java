@@ -17,42 +17,58 @@ import com.adria.kappavault.service.ReviewService;
 @RequestMapping("/obras")
 public class ObraController {
 
+    // SERVICIO DE OBRAS
     private final ObraService obraService;
+
+    // SERVICIO DE REVIEWS
     private final ReviewService reviewService;
 
-    // Inyectamos los servicios en lugar de los repositorios directamente
+    // INYECCIÓN DE SERVICIOS
     public ObraController(ObraService obraService, ReviewService reviewService) {
         this.obraService = obraService;
         this.reviewService = reviewService;
     }
 
-    // LISTADO DE OBRAS + FORMULARIO DE CREACIÓN
+    // MOSTRAR LISTA DE OBRAS
     @GetMapping
     public String listarObras(Model model) {
+
+        // ENVÍA TODAS LAS OBRAS A LA VISTA
         model.addAttribute("obras", obraService.obtenerTodas());
 
-        // Enviamos un objeto vacío para que el formulario de 'lista.html' pueda vincular los campos
+        // CREA OBJETO VACÍO PARA EL FORMULARIO
         model.addAttribute("nuevaObra", new Obra());
 
         return "obras/lista";
     }
 
-    // GUARDAR NUEVO ANIME / OBRA
+    // CREAR NUEVA OBRA
     @PostMapping("/nuevo")
     public String crearObra(@ModelAttribute("nuevaObra") Obra obra) {
+
+        // GUARDA LA OBRA EN LA BASE DE DATOS
         obraService.guardar(obra);
-        return "redirect:/obras"; // Redirige a la lista para ver el nuevo anime creado
+
+        // REDIRECCIÓN AL LISTADO
+        return "redirect:/obras";
     }
 
-    // DETALLE DE OBRA
+    // MOSTRAR DETALLE DE UNA OBRA
     @GetMapping("/{id}")
     public String detalle(@PathVariable Long id, Model model) {
+
+        // BUSCA LA OBRA POR ID
         Obra obra = obraService.obtenerPorId(id);
+
+        // SI NO EXISTE, VUELVE AL LISTADO
         if (obra == null) {
-            return "redirect:/obras"; // Evita errores si el ID no existe
+            return "redirect:/obras";
         }
 
+        // ENVÍA LA OBRA A LA VISTA
         model.addAttribute("obra", obra);
+
+        // CREA REVIEW VACÍA PARA EL FORMULARIO
         model.addAttribute("review", new Review());
 
         return "obras/detalle";
@@ -61,30 +77,45 @@ public class ObraController {
     // CREAR REVIEW
     @PostMapping("/{id}/review")
     public String crearReview(@PathVariable Long id, @ModelAttribute Review review) {
+
+        // OBTIENE LA OBRA
         Obra obra = obraService.obtenerPorId(id);
+
+        // SI NO EXISTE, REDIRIGE
         if (obra == null) {
             return "redirect:/obras";
         }
 
-        review.setId(null); // Fuerza la creación de un nuevo registro
-        review.setObra(obra); // Vincula la reseña con este anime
+        // FUERZA NUEVA REVIEW
+        review.setId(null);
 
+        // ASOCIA REVIEW A LA OBRA
+        review.setObra(obra);
+
+        // GUARDA REVIEW
         reviewService.guardar(review);
 
         return "redirect:/obras/" + id;
     }
 
-    // ELIMINAR OBRAS
+    // ELIMINAR OBRA
     @PostMapping("/eliminar/{id}")
     public String eliminarObra(@PathVariable Long id) {
+
+        // BORRA LA OBRA
         obraService.eliminar(id);
+
         return "redirect:/obras";
     }
 
     // ELIMINAR REVIEW
     @PostMapping("/{obraId}/review/eliminar/{reviewId}")
     public String eliminarReview(@PathVariable Long obraId, @PathVariable Long reviewId) {
+
+        // BORRA LA REVIEW
         reviewService.eliminar(reviewId);
-        return "redirect:/obras/" + obraId; // Te devuelve a la misma ficha de detalle en la que estabas
+
+        // VUELVE AL DETALLE DE LA OBRA
+        return "redirect:/obras/" + obraId;
     }
 }

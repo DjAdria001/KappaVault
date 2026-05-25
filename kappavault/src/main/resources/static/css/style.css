@@ -1,13 +1,16 @@
+/* RESETEO GENERAL */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+/* ESTILOS GENERALES DEL BODY */
 body{
     font-family:Arial, Helvetica, sans-serif;
     color:#fff;
 
+    /* FONDO CON IMAGEN Y OSCURECIDO */
     background:
         linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.75)),
         url('../images/bg-img.jpg');
@@ -18,11 +21,13 @@ body{
     min-height:100vh;
 }
 
+/* CONTENEDOR PRINCIPAL */
 .container{
     width:min(1200px,90%);
     margin:auto;
 }
 
+/* HEADER SUPERIOR */
 header{
     padding:20px 40px;
 
@@ -32,6 +37,7 @@ header{
     box-shadow:0 5px 20px #0005;
 }
 
+/* BARRA DE NAVEGACIÓN */
 .navbar{
     max-width:1200px;
     margin:auto;
@@ -41,6 +47,7 @@ header{
     gap:15px;
 }
 
+/* CONTENEDORES FLEX */
 .meta,
 .review-top{
     display:flex;
@@ -49,38 +56,45 @@ header{
     gap:15px;
 }
 
+/* LINKS Y GRID DE FORMULARIOS */
 .nav-links,
 .form-grid{
     display:flex;
     gap:15px;
 }
 
+/* LOGO PRINCIPAL */
 .logo{
     font-size:2rem;
     font-weight:700;
     color:#fff;
 }
 
-
+/* LINKS Y BOTONES */
 .nav-links a,
 .btn{
     color:#fff;
     text-decoration:none;
 }
 
+/* SECCIÓN HERO */
 .hero{
     text-align:center;
     padding:90px 20px;
 }
 
+/* TÍTULO PRINCIPAL */
 .hero h1{
     font-size:clamp(2.5rem,6vw,4rem);
     margin-bottom:20px;
+
+    /* EFECTO DE TEXTO DEGRADADO */
     background:linear-gradient(90deg,#5eead4,#60a5fa);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
+/* TEXTO SECUNDARIO */
 .hero p,
 .card p,
 .empty,
@@ -88,12 +102,14 @@ footer{
     color:#cbd5e1;
 }
 
+/* PÁRRAFO HERO */
 .hero p{
     max-width:700px;
     margin:auto;
     line-height:1.7;
 }
 
+/* BOTONES */
 .btn{
     display:inline-block;
     margin-top:20px;
@@ -104,11 +120,13 @@ footer{
     transition:.3s;
 }
 
+/* EFECTO HOVER */
 .btn:hover,
 .card:hover{
     transform:translateY(-4px);
 }
 
+/* GRID DE TARJETAS */
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -116,6 +134,7 @@ footer{
     margin:50px 0;
 }
 
+/* ESTILO GENERAL DE TARJETAS Y PANELES */
 .card,
 .panel,
 .info,
@@ -125,26 +144,31 @@ footer{
     border-radius:20px;
 }
 
+/* TARJETAS */
 .card{
     overflow:hidden;
     border:1px solid #ffffff14;
     transition:.3s;
 }
 
+/* IMÁGENES */
 .card img,
 .poster{
     width:100%;
     object-fit:cover;
 }
 
+/* ALTURA IMAGEN TARJETA */
 .card img{
     height:350px;
 }
 
+/* POSTER DETALLE */
 .poster{
     border-radius:20px;
 }
 
+/* PADDING INTERNO */
 .card-content,
 .panel,
 .info,
@@ -152,6 +176,7 @@ footer{
     padding:25px;
 }
 
+/* LAYOUT DETALLE */
 .detail,
 .detail-layout{
     display:grid;
@@ -160,12 +185,14 @@ footer{
     margin:50px 0;
 }
 
+/* TARJETA REVIEW */
 .review{
     margin-top:15px;
     padding:15px;
     background:#111827;
 }
 
+/* BADGES */
 .badge{
     display:inline-block;
     padding:6px 12px;
@@ -174,24 +201,29 @@ footer{
     font-size:.9rem;
 }
 
+/* TÍTULOS DE SECCIÓN */
 .section-title{
     margin-bottom:25px;
 }
 
+/* FORMULARIOS */
 form,
 .form-grid{
     display:grid;
     gap:15px;
 }
 
+/* GRID RESPONSIVE FORM */
 .form-grid{
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 }
 
+/* OCUPAR TODO EL ANCHO */
 .full{
     grid-column:1/-1;
 }
 
+/* INPUTS Y TEXTAREA */
 input,
 textarea{
     width:100%;
@@ -202,15 +234,18 @@ textarea{
     color:#fff;
 }
 
+/* CONFIGURACIÓN TEXTAREA */
 textarea{
     resize:vertical;
 }
 
+/* FOOTER */
 footer{
     padding:30px;
     text-align:center;
 }
 
+/* RESPONSIVE */
 @media(max-width:900px){
 
     .detail,
@@ -227,12 +262,15 @@ footer{
         flex-wrap:wrap;
     }
 }
+
+/* CONTENEDOR DEL LOGO */
 .logo-box{
     display:flex;
     align-items:center;
     gap:12px;
 }
 
+/* IMAGEN DEL LOGO */
 .logo-img{
     width:42px;
     height:42px;

@@ -1,19 +1,30 @@
 <!DOCTYPE html>
+
+<!-- DOCUMENTO HTML5 -->
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
+
 <head>
+
+    <!-- CONFIGURACIÓN BÁSICA -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- TÍTULO DE LA PÁGINA -->
     <title>Catálogo | KappaVault</title>
+
+    <!-- ICONO DE LA PESTAÑA -->
     <link rel="icon" type="image/png" href="/images/logo2.png">
 
-
+    <!-- ARCHIVO CSS -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
 
+<!-- HEADER PRINCIPAL -->
 <header class="container navbar">
 
+    <!-- LOGO -->
     <div class="logo-box">
 
         <img src="/images/logo2.png"
@@ -26,6 +37,7 @@
 
     </div>
 
+    <!-- MENÚ DE NAVEGACIÓN -->
     <nav class="nav-links">
         <a href="/">Inicio</a>
         <a href="/obras">Catálogo</a>
@@ -33,50 +45,99 @@
 
 </header>
 
+<!-- CONTENIDO PRINCIPAL -->
 <main class="container">
 
+    <!-- TARJETA FORMULARIO -->
     <section class="form-card">
 
-        <h1 class="section-title">Crear nueva obra</h1>
+        <!-- TÍTULO FORMULARIO -->
+        <h1 class="section-title">
+            Crear nueva obra
+        </h1>
 
-        <form th:action="@{/obras/nuevo}" th:object="${nuevaObra}" method="post">
-            <input type="text" th:field="*{titulo}" placeholder="Título del Anime" required />
-            <input type="text" th:field="*{tipo}" placeholder="Tipo (Anime, Manga, etc.)" />
-            <input type="text" th:field="*{genero}" placeholder="Género" />
-            <input type="number" th:field="*{anio}" placeholder="Año" />
-            <input type="text" th:field="*{imagenUrl}" placeholder="URL de la Imagen" />
-            
-            <button type="submit">Guardar Anime</button>
+        <!-- FORMULARIO CREAR OBRA -->
+        <form th:action="@{/obras/nuevo}"
+              th:object="${nuevaObra}"
+              method="post">
+
+            <!-- INPUT TÍTULO -->
+            <input type="text"
+                   th:field="*{titulo}"
+                   placeholder="Título del Anime"
+                   required />
+
+            <!-- INPUT TIPO -->
+            <input type="text"
+                   th:field="*{tipo}"
+                   placeholder="Tipo (Anime, Manga, etc.)" />
+
+            <!-- INPUT GÉNERO -->
+            <input type="text"
+                   th:field="*{genero}"
+                   placeholder="Género" />
+
+            <!-- INPUT AÑO -->
+            <input type="number"
+                   th:field="*{anio}"
+                   placeholder="Año" />
+
+            <!-- INPUT URL IMAGEN -->
+            <input type="text"
+                   th:field="*{imagenUrl}"
+                   placeholder="URL de la Imagen" />
+
+            <!-- BOTÓN GUARDAR -->
+            <button type="submit">
+                Guardar Anime
+            </button>
+
         </form>
 
     </section>
 
-    <h1 class="section-title">Listado de obras</h1>
+    <!-- TÍTULO LISTADO -->
+    <h1 class="section-title">
+        Listado de obras
+    </h1>
 
+    <!-- GRID DE OBRAS -->
     <section class="grid">
 
-        <article class="card" th:each="obra : ${obras}">
+        <!-- TARJETA DE CADA OBRA -->
+        <article class="card"
+                 th:each="obra : ${obras}">
 
-            <img th:src="${obra.imagenUrl}" alt="Poster">
+            <!-- IMAGEN DE LA OBRA -->
+            <img th:src="${obra.imagenUrl}"
+                 alt="Poster">
 
+            <!-- CONTENIDO TARJETA -->
             <div class="card-content">
 
-                <span class="badge" th:text="${obra.tipo}">
+                <!-- TIPO DE OBRA -->
+                <span class="badge"
+                      th:text="${obra.tipo}">
                     Anime
                 </span>
 
+                <!-- TÍTULO -->
                 <h3 th:text="${obra.titulo}">
                     Título
                 </h3>
 
+                <!-- GÉNERO Y AÑO -->
                 <p>
                     <span th:text="${obra.genero}"></span> ·
                     <span th:text="${obra.anio}"></span>
                 </p>
 
+                <!-- BOTÓN DETALLE -->
                 <a class="btn btn-primary"
                    th:href="@{'/obras/' + ${obra.id}}">
+
                     Ver detalle
+
                 </a>
 
             </div>
@@ -87,6 +148,7 @@
 
 </main>
 
+<!-- FOOTER -->
 <footer>
     © 2026 KappaVault
 </footer>
