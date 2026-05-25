@@ -1,11 +1,11 @@
-
 package com.adria.kappavault.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
 
 import com.adria.kappavault.model.Obra;
 import com.adria.kappavault.repository.ObraRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ObraService {
@@ -28,7 +28,4 @@ public class ObraService {
         return repo.save(obra);
     }
 
-    public void eliminar(Long id) {
-        repo.deleteById(id);
-    }
 }

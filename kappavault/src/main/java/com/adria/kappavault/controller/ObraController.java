@@ -73,4 +73,18 @@ public class ObraController {
 
         return "redirect:/obras/" + id;
     }
+
+    // ELIMINAR OBRAS
+    @PostMapping("/eliminar/{id}")
+    public String eliminarObra(@PathVariable Long id) {
+        obraService.eliminar(id);
+        return "redirect:/obras";
+    }
+
+    // ELIMINAR REVIEW
+    @PostMapping("/{obraId}/review/eliminar/{reviewId}")
+    public String eliminarReview(@PathVariable Long obraId, @PathVariable Long reviewId) {
+        reviewService.eliminar(reviewId);
+        return "redirect:/obras/" + obraId; // Te devuelve a la misma ficha de detalle en la que estabas
+    }
 }
