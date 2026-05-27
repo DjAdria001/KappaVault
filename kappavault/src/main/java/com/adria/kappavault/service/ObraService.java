@@ -34,4 +34,9 @@ public class ObraService {
         return repo.save(obra);
     }
 
+    // ELIMINAR OBRA POR ID
+    public void eliminar(Long id) {
+        repo.deleteById(id);
+    }
+
 }
